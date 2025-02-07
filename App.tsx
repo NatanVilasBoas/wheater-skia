@@ -1,5 +1,11 @@
 import HomeBackground from "./components/HomeBackground";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
-  return <HomeBackground />;
+  return (
+    <>
+      <StatusBar style="light" />
+      <HomeBackground />
+    </>
+  );
 }
