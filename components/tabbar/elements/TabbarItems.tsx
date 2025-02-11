@@ -5,7 +5,7 @@ import TrapezoidBackground from "./TrapezoidBackground";
 import useApplicationDimensions from "../../../hooks/useApplicationDimensions";
 import CircleButton from "./CricleButton";
 
-const TabbarItems = () => {
+export default function TabbarItems() {
   const { width, height } = useApplicationDimensions();
   const trapezoidWidth = width * 0.68;
   const trapezoidHeight = height * 0.12;
@@ -39,6 +39,4 @@ const TabbarItems = () => {
       <ListIcon />
     </View>
   );
-};
-
-export default TabbarItems;
+}

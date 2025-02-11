@@ -3,7 +3,7 @@ import ArcComponent from "./elements/ArcComponent";
 import useApplicationDimensions from "../../hooks/useApplicationDimensions";
 import TabbarItems from "./elements/TabbarItems";
 
-export const WeatherTabBar = () => {
+export default function WeatherTabBar() {
   const TabbarHeight = 88;
   const { width, height } = useApplicationDimensions();
 
@@ -19,4 +19,4 @@ export const WeatherTabBar = () => {
       <TabbarItems />
     </View>
   );
-};
+}

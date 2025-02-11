@@ -6,7 +6,7 @@ interface ArcComponentProps {
   width: number;
 }
 
-const ArcComponent = ({ height, width }: ArcComponentProps) => {
+export default function ArcComponent({ height, width }: ArcComponentProps) {
   const arcPath = `
   M 0 0 Q ${width / 2} ${height / 2} ${width} 0 
   L ${width} ${height} L 0 ${height} Z`;
@@ -32,6 +32,4 @@ const ArcComponent = ({ height, width }: ArcComponentProps) => {
       />
     </Canvas>
   );
-};
-
-export default ArcComponent;
+}

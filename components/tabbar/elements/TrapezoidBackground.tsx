@@ -12,7 +12,10 @@ interface TrapezoidBackgroundProps {
   height: number;
 }
 
-const TrapezoidBackground = ({ width, height }: TrapezoidBackgroundProps) => {
+export default function TrapezoidBackground({
+  width,
+  height,
+}: TrapezoidBackgroundProps) {
   return (
     <Canvas style={{ width, height }}>
       <FitBox src={rect(0, 0, 266, 100)} dst={rect(0, 0, width, height)}>
@@ -39,6 +42,4 @@ const TrapezoidBackground = ({ width, height }: TrapezoidBackgroundProps) => {
       </FitBox>
     </Canvas>
   );
-};
-
-export default TrapezoidBackground;
+}

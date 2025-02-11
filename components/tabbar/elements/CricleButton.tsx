@@ -12,7 +12,7 @@ interface CircleButtonProps {
   pressed: boolean;
 }
 
-const CircleButton = ({ radius, pressed }: CircleButtonProps) => {
+export default function CircleButton({ radius, pressed }: CircleButtonProps) {
   const diameter = radius * 2;
   return (
     <Canvas style={{ width: diameter, height: diameter }}>
@@ -45,6 +45,4 @@ const CircleButton = ({ radius, pressed }: CircleButtonProps) => {
       />
     </Canvas>
   );
-};
-
-export default CircleButton;
+}

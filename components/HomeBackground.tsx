@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import useApplicationDimensions from "../hooks/useApplicationDimensions";
 
-const HomeBackground = () => {
+export default function HomeBackground() {
   const dimesions = useApplicationDimensions();
   const { width, height } = dimesions;
   const smokeHeight = height * 0.6;
@@ -56,7 +56,7 @@ const HomeBackground = () => {
       </ImageBackground>
     </View>
   );
-};
+}
 
 const styles = ({ width }: ScaledSize) =>
   StyleSheet.create({
@@ -67,5 +67,3 @@ const styles = ({ width }: ScaledSize) =>
       top: "36%",
     },
   });
-
-export default HomeBackground;
