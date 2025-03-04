@@ -10,6 +10,7 @@ import { ForecastType } from "../../models/Weather";
 import { View } from "react-native";
 import AirQualityWidget from "../forecast/widgets/AirQualityWidget";
 import UvIndexWidget from "../forecast/widgets/UvIndexWidget";
+import SunriseWidget from "../forecast/widgets/SunriseWidget";
 
 export default function ForecastSheet() {
   const { width, height } = useApplicationDimensions();
@@ -68,12 +69,18 @@ export default function ForecastSheet() {
           <View
             style={{
               flexDirection: "row",
+              gap: 20,
             }}
           >
             <UvIndexWidget
               widgetHeight={widgetHeight}
               widgetFullWidth={widgetFullWidth}
               value={25}
+            />
+            <SunriseWidget
+              widgetFullWidth={widgetFullWidth}
+              value={10}
+              widgetHeight={widgetHeight}
             />
           </View>
         </View>

@@ -1,78 +1,62 @@
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleProp,
+  StyleSheet,
+} from "react-native";
 import React from "react";
-import BaseWidget from "./BaseWidget";
-
-import Ionicons from "@expo/vector-icons/Ionicons";
 import {
   Canvas,
   Circle,
   Line,
   LinearGradient,
+  Paint,
   vec,
 } from "@shopify/react-native-skia";
+import { Feather } from "@expo/vector-icons";
+import Widget, { WidgetDimensionsProps } from "./base/Widget";
 
-interface UvIndexWidgetProps {
-  value: number;
-  widgetHeight: number;
-  widgetFullWidth: number;
-}
-
-const UvIndexWidget = ({
-  widgetHeight,
-  value,
-  widgetFullWidth,
-}: UvIndexWidgetProps) => {
-  const lineCy = 8;
-  const widgetWidth = widgetFullWidth / 2;
+const UvIndexWidget = ({ width, height }:WidgetDimensionsProps) => {
   return (
-    <BaseWidget
-      headerText="UV Index"
-      height={widgetHeight}
-      width={widgetWidth}
-      icon={<Ionicons name="sunny" size={20} color="#9392A8" />}
-    >
-      <View style={styles.body}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>4</Text>
-          <Text style={{ ...styles.headerText, fontSize: 24 }}>Moderate</Text>
-        </View>
-        <Canvas style={{ height: 32, width: widgetFullWidth }}>
-          <Line
-            p1={vec(0, lineCy)}
-            p2={vec(widgetWidth - 40, lineCy)}
-            strokeWidth={4}
-            strokeCap={"round"}
-          >
-            <LinearGradient
-              start={vec(0, 0)}
-              end={vec(widgetWidth - 40, 0)}
-              colors={["#3659B1", "#BF59EA", "#BE3985"]}
-            />
-          </Line>
-          <Circle
-            cx={(value / 100) * (widgetWidth - 40) + 2}
-            cy={lineCy}
-            r={2}
-            color={"white"}
-          />
-        </Canvas>
-      </View>
-    </BaseWidget>
+    <>
+      <Widget width={width} height={height}>
+        <Widget.Header
+          Icon={Feather}
+          iconProps={{ name: "sun" }}
+          contentText="UV INDEX"
+        />
+        <Widget.Body contentText="4" contentSize='Large' subContentText="Moderate">
+          <Canvas style={{ height: 10, marginTop: 30, flex: 1 }}>
+            <Line
+              p1={vec(0, 0)}
+              p2={vec(width, 0)}
+              strokeWidth={10}
+              style={"stroke"}
+            >
+              <LinearGradient
+                start={vec(0, 0)}
+                end={vec(width, 0)}
+                colors={["#2a59b7", "#f92e9b"]}
+              />
+            </Line>
+
+            <Circle
+              cx={3}
+              cy={3}
+              r={3}
+              color={"white"}
+              transform={[{ translateX: 20 }]}
+            >
+              <Paint color="white" />
+              <Paint color="black" style="stroke" strokeWidth={1} />
+            </Circle>
+          </Canvas>
+        </Widget.Body>
+      </Widget>
+    </>
   );
 };
 
 export default UvIndexWidget;
 
 const styles = StyleSheet.create({
-  body: {
-    paddingLeft: 20,
-  },
-  header: {
-    marginBottom: 12,
-  },
-  headerText: {
-    fontSize: 32,
-    color: "white",
-    fontFamily: "SF-Semibold",
-  },
+  
 });
