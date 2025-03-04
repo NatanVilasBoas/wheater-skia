@@ -20,9 +20,13 @@ const BaseWidget = ({
   const cornerRadius = 22;
   return (
     <View
-      style={{ flex: 1, alignSelf: "center", width: width, height: height }}
+      style={{
+        alignSelf: "center",
+        width: width,
+        height: height,
+      }}
     >
-      <Canvas style={{ ...StyleSheet.absoluteFillObject }}>
+      <Canvas style={{ ...StyleSheet.absoluteFillObject, height: height }}>
         <RoundedRect
           x={0}
           y={0}
@@ -53,7 +57,7 @@ export default BaseWidget;
 
 const styles = StyleSheet.create({
   headerText: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: "SF-Regular",
     textTransform: "uppercase",
     color: "#9392A8",

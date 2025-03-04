@@ -14,36 +14,40 @@ import {
 
 interface AirQualityWidgetProps {
   value: number;
+  widgetHeight: number;
+  widgetFullWidth: number;
 }
 
-const AirQualityWidget = ({ value }: AirQualityWidgetProps) => {
-  const { width } = useApplicationDimensions();
-  const widgetWidth = width - 40;
+const AirQualityWidget = ({
+  value,
+  widgetHeight,
+  widgetFullWidth,
+}: AirQualityWidgetProps) => {
   const lineCy = 8;
   return (
     <BaseWidget
-      height={172}
-      width={widgetWidth}
+      height={widgetHeight}
+      width={widgetFullWidth}
       headerText="air quality"
-      icon={<Entypo name="air" size={24} color="#9392A8" />}
+      icon={<Entypo name="air" size={20} color="#9392A8" />}
     >
       <View style={styles.body}>
         <Text style={styles.title}>3-Low Health Risk</Text>
-        <Canvas style={{ height: 32, width: widgetWidth }}>
+        <Canvas style={{ height: 32, width: widgetFullWidth }}>
           <Line
             p1={vec(0, lineCy)}
-            p2={vec(widgetWidth - 40, lineCy)}
+            p2={vec(widgetFullWidth - 40, lineCy)}
             strokeWidth={4}
             strokeCap={"round"}
           >
             <LinearGradient
               start={vec(0, 0)}
-              end={vec(widgetWidth - 40, 0)}
+              end={vec(widgetFullWidth - 40, 0)}
               colors={["#3659B1", "#BF59EA", "#BE3985"]}
             />
           </Line>
           <Circle
-            cx={(value / 100) * (widgetWidth - 40) + 2}
+            cx={(value / 100) * (widgetFullWidth - 40) + 2}
             cy={lineCy}
             r={2}
             color={"white"}

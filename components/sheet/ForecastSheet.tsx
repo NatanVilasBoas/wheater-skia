@@ -7,8 +7,9 @@ import Separator from "./elements/Separator";
 import { hourly, weekly } from "../../data/ForecastData";
 import ForecastScroll from "../forecast/ForecastScroll";
 import { ForecastType } from "../../models/Weather";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import AirQualityWidget from "../forecast/widgets/AirQualityWidget";
+import UvIndexWidget from "../forecast/widgets/UvIndexWidget";
 
 export default function ForecastSheet() {
   const { width, height } = useApplicationDimensions();
@@ -20,6 +21,8 @@ export default function ForecastSheet() {
   const capsuleRadius = 30;
   const capsuleHeight = height * 0.17;
   const capsuleWidth = width * 0.15;
+  const widgetHeight = 172;
+  const widgetFullWidth = width - 40;
 
   return (
     <BottomSheet
@@ -52,10 +55,27 @@ export default function ForecastSheet() {
           style={{
             paddingTop: 30,
             paddingBottom: 50,
+            paddingHorizontal: 20,
             flex: 4,
+            gap: 16,
           }}
         >
-          <AirQualityWidget value={50} />
+          <AirQualityWidget
+            widgetHeight={widgetHeight}
+            widgetFullWidth={widgetFullWidth}
+            value={35}
+          />
+          <View
+            style={{
+              flexDirection: "row",
+            }}
+          >
+            <UvIndexWidget
+              widgetHeight={widgetHeight}
+              widgetFullWidth={widgetFullWidth}
+              value={25}
+            />
+          </View>
         </View>
       </BottomSheetView>
     </BottomSheet>
