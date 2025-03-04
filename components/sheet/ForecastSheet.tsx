@@ -7,6 +7,8 @@ import Separator from "./elements/Separator";
 import { hourly, weekly } from "../../data/ForecastData";
 import ForecastScroll from "../forecast/ForecastScroll";
 import { ForecastType } from "../../models/Weather";
+import { StyleSheet, View } from "react-native";
+import AirQualityWidget from "../forecast/widgets/AirQualityWidget";
 
 export default function ForecastSheet() {
   const { width, height } = useApplicationDimensions();
@@ -35,7 +37,7 @@ export default function ForecastSheet() {
         />
       )}
     >
-      <BottomSheetView style={{ flex: 1, height: height }}>
+      <BottomSheetView style={{ height: height }}>
         <ForecastControl onPress={(type) => setSelectedForecastType(type)} />
         <Separator width={width} height={3} />
         <ForecastScroll
@@ -46,6 +48,15 @@ export default function ForecastSheet() {
             selectedForecastType === ForecastType.Hourly ? hourly : weekly
           }
         />
+        <View
+          style={{
+            paddingTop: 30,
+            paddingBottom: 50,
+            flex: 4,
+          }}
+        >
+          <AirQualityWidget value={50} />
+        </View>
       </BottomSheetView>
     </BottomSheet>
   );

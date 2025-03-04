@@ -20,9 +20,20 @@ const ForecastScroll = ({
   return (
     <ScrollView
       horizontal
-      style={{ paddingLeft: 20, paddingTop: 20, paddingBottom: 10 }}
+      style={{
+        paddingLeft: 20,
+        paddingTop: 20,
+        paddingBottom: 10,
+        flex: 1,
+      }}
     >
-      <View style={{ flex: 1, flexDirection: "row", gap: 12 }}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          gap: 12,
+        }}
+      >
         {forecasts.map((forecast, i) => (
           <ForecastCapsule
             width={capsuleWidth}
