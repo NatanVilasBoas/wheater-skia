@@ -7,10 +7,16 @@ import Separator from "./elements/Separator";
 import { hourly, weekly } from "../../data/ForecastData";
 import ForecastScroll from "../forecast/ForecastScroll";
 import { ForecastType } from "../../models/Weather";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import AirQualityWidget from "../forecast/widgets/AirQualityWidget";
 import UvIndexWidget from "../forecast/widgets/UvIndexWidget";
 import SunriseWidget from "../forecast/widgets/SunriseWidget";
+import WindWidget from "../forecast/widgets/WindWidget";
+import RainFallWidget from "../forecast/widgets/RainFallWidget";
+import FeelsLikeWidget from "../forecast/widgets/FeelsLikeWidget";
+import HumidityWidget from "../forecast/widgets/HumidityWidget";
+import VisibilityWidget from "../forecast/widgets/VisibilityWidget";
+import PressureWidget from "../forecast/widgets/PressureWidget";
 
 export default function ForecastSheet() {
   const { width, height } = useApplicationDimensions();
@@ -22,8 +28,7 @@ export default function ForecastSheet() {
   const capsuleRadius = 30;
   const capsuleHeight = height * 0.17;
   const capsuleWidth = width * 0.15;
-  const widgetHeight = 172;
-  const widgetFullWidth = width - 40;
+  const smallWidgetSize = width / 2 - 30;
 
   return (
     <BottomSheet
@@ -44,46 +49,61 @@ export default function ForecastSheet() {
       <BottomSheetView style={{ height: height }}>
         <ForecastControl onPress={(type) => setSelectedForecastType(type)} />
         <Separator width={width} height={3} />
-        <ForecastScroll
-          capsuleWidth={capsuleWidth}
-          capsuleHeight={capsuleHeight}
-          capsuleRadius={capsuleRadius}
-          forecasts={
-            selectedForecastType === ForecastType.Hourly ? hourly : weekly
-          }
-        />
-        <View
-          style={{
-            paddingTop: 30,
-            paddingBottom: 50,
-            paddingHorizontal: 20,
-            flex: 4,
-            gap: 16,
-          }}
+        <ScrollView
+          style={{ flex: 1 }}
+          contentContainerStyle={{ paddingBottom: 10 }}
         >
-          <AirQualityWidget
-            widgetHeight={widgetHeight}
-            widgetFullWidth={widgetFullWidth}
-            value={35}
+          <ForecastScroll
+            capsuleWidth={capsuleWidth}
+            capsuleHeight={capsuleHeight}
+            capsuleRadius={capsuleRadius}
+            forecasts={
+              selectedForecastType === ForecastType.Hourly ? hourly : weekly
+            }
           />
           <View
             style={{
-              flexDirection: "row",
-              gap: 20,
+              paddingTop: 30,
+              paddingBottom: 50,
+              flex: 1,
             }}
           >
-            <UvIndexWidget
-              widgetHeight={widgetHeight}
-              widgetFullWidth={widgetFullWidth}
-              value={25}
-            />
-            <SunriseWidget
-              widgetFullWidth={widgetFullWidth}
-              value={10}
-              widgetHeight={widgetHeight}
-            />
+            <AirQualityWidget width={width - 30} height={150} />
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                padding: 15,
+                gap: 18,
+              }}
+            >
+              <UvIndexWidget width={smallWidgetSize} height={smallWidgetSize} />
+              <SunriseWidget width={smallWidgetSize} height={smallWidgetSize} />
+              <WindWidget width={smallWidgetSize} height={smallWidgetSize} />
+              <RainFallWidget
+                width={smallWidgetSize}
+                height={smallWidgetSize}
+              />
+              <FeelsLikeWidget
+                width={smallWidgetSize}
+                height={smallWidgetSize}
+              />
+              <HumidityWidget
+                width={smallWidgetSize}
+                height={smallWidgetSize}
+              />
+              <VisibilityWidget
+                width={smallWidgetSize}
+                height={smallWidgetSize}
+              />
+              <PressureWidget
+                width={smallWidgetSize}
+                height={smallWidgetSize}
+              />
+            </View>
           </View>
-        </View>
+        </ScrollView>
       </BottomSheetView>
     </BottomSheet>
   );
