@@ -28,6 +28,7 @@ export default function App() {
     <SafeAreaProvider onLayout={onLayoutRootView}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Home />
+        {/* <BasicAnimation /> */}
         <StatusBar style="light" />
       </GestureHandlerRootView>
     </SafeAreaProvider>
