@@ -38,8 +38,18 @@ export default function WeatherInfo({ weather }: WeatherInfoProps) {
   const animatedTempTxtStyle = useAnimatedStyle(() => {
     const fontFamily = animatedPosition.value > 0.5 ? "SF-Semibold" : "SF-Thin";
     return {
-      fontSize: interpolate(animatedPosition.value, [0, 1], [96, 20]),
-      lineHeight: interpolate(animatedPosition.value, [0, 1], [96, 20]),
+      fontSize: interpolate(
+        animatedPosition.value,
+        [0, 1],
+        [96, 20],
+        Extrapolation.CLAMP
+      ),
+      lineHeight: interpolate(
+        animatedPosition.value,
+        [0, 1],
+        [96, 20],
+        Extrapolation.CLAMP
+      ),
       color: interpolateColor(
         animatedPosition.value,
         [0, 1],
