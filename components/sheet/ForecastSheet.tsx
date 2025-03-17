@@ -78,6 +78,7 @@ export default function ForecastSheet() {
 
   return (
     <BottomSheet
+      enableDynamicSizing={false}
       snapPoints={snapPoints}
       animatedPosition={currentPosition}
       animateOnMount={false}

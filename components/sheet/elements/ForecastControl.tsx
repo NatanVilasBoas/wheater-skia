@@ -29,8 +29,7 @@ const ForecastControl = ({ onPress }: ForecastControlProps) => {
   const spacingX = 32;
   const strokeWidth = 3;
   const segmentTranslateX = useSharedValue(0);
-  const AnimatedCanvas = Animated.createAnimatedComponent(Canvas);
-  const animtedSegmentLineStyles = useAnimatedStyle(() => {
+  const animatedSegmentLineStyles = useAnimatedStyle(() => {
     return {
       transform: [{ translateX: segmentTranslateX.value }],
     };
@@ -64,24 +63,26 @@ const ForecastControl = ({ onPress }: ForecastControlProps) => {
           <Text style={styles.forecastText}>Weekly Forecast</Text>
         </TouchableOpacity>
       </View>
-      <AnimatedCanvas
+      <Animated.View
         style={[
           { height: strokeWidth, width: textWidth, marginLeft: spacingX },
-          animtedSegmentLineStyles,
+          animatedSegmentLineStyles,
         ]}
       >
-        <Line p1={vec(0, 0)} p2={vec(textWidth, 0)} strokeWidth={strokeWidth}>
-          <LinearGradient
-            start={vec(0, 0)}
-            end={vec(textWidth, 0)}
-            colors={[
-              "rgba(147,112,177,0)",
-              "rgba(147,112,177,2)",
-              "rgba(147,112,177,0)",
-            ]}
-          />
-        </Line>
-      </AnimatedCanvas>
+        <Canvas style={{ flex: 1 }}>
+          <Line p1={vec(0, 0)} p2={vec(textWidth, 0)} strokeWidth={strokeWidth}>
+            <LinearGradient
+              start={vec(0, 0)}
+              end={vec(textWidth, 0)}
+              colors={[
+                "rgba(147,112,177,0)",
+                "rgba(147,112,177,2)",
+                "rgba(147,112,177,0)",
+              ]}
+            />
+          </Line>
+        </Canvas>
+      </Animated.View>
     </>
   );
 };
