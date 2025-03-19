@@ -14,11 +14,11 @@ import Animated, {
   Extrapolation,
   interpolate,
   interpolateColor,
-  useAnimatedReaction,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
 } from "react-native-reanimated";
+import BackgroundGradient from "./BackgroundGradient";
 
 export default function HomeBackground() {
   const dimesions = useApplicationDimensions();
@@ -72,15 +72,7 @@ export default function HomeBackground() {
   const myStyles = styles(dimesions);
   return (
     <View style={{ ...StyleSheet.absoluteFillObject }}>
-      <Canvas style={{ ...StyleSheet.absoluteFillObject }}>
-        <Rect x={0} y={0} width={width} height={height}>
-          <LinearGradient
-            start={vec(0, 0)}
-            end={vec(width, height)}
-            colors={bkgColors}
-          />
-        </Rect>
-      </Canvas>
+      <BackgroundGradient colors={bkgColors} />
       <AnimatedImgBkg
         source={require("../assets/home/Background.png")}
         resizeMode="cover"
